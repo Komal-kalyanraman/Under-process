@@ -13,9 +13,9 @@ void setup() {
 void send(unsigned int n) {
   Serial.print("Sending ");
   Serial.print(n);
-//  digitalWrite(chipSelectPin, LOW);
+  digitalWrite(chipSelectPin, LOW);
   unsigned int response = SPI.transfer(n);
-//  digitalWrite(chipSelectPin, HIGH);
+  digitalWrite(chipSelectPin, HIGH);
   Serial.print(" .. received ");
   Serial.println(response);
   delay(100);
