@@ -1,12 +1,13 @@
 
-
-#define ACK 0x7E
+// Settings for Atmega16, Atmega32
 
 //Initialize SPI Master Device
 void spi_init_master (void)            
 {
-    DDRB = (1<<5)|(1<<3);              //Set MOSI, SCK as Output
-    SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0); //Enable SPI, Set as Master
+	DDRB |= (1<<5)|(1<<7)|(1<<4);			// Make MOSI, SCK, SS as Output pin 
+	DDRB &= ~(1<<6);						// Make MISO pin as input pin 
+	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0);	// Enable SPI in master mode with Fosc/16 
+	SPSR &= ~(1<<SPI2X);					// Disable speed doubler 
                                        //Prescaler: Fosc/16, Enable Interrupts
 }
 
